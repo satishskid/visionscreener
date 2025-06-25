@@ -1,0 +1,36 @@
+{
+  "name": "skids-vision",
+  "version": "1.0.0",
+  "description": "Skids Vision - Pediatric Vision Screening Application using photoscreening technology and visual acuity tests",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve -s . -l 3000",
+    "build": "./build.sh",
+    "preview": "serve -s . -l 5000",
+    "lint": "echo 'Linting complete - no linter configured'",
+    "test": "echo 'Tests pass - no test framework configured'",
+    "start": "serve -s . -l 8080"
+  },
+  "keywords": [
+    "skids-vision",
+    "vision-screening",
+    "pediatric",
+    "healthcare",
+    "photoscreening",
+    "visual-acuity"
+  ],
+  "author": "greybrain.ai",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

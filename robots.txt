@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://skids-vision.netlify.app/sitemap.xml
+
+# Specific instructions for medical content
+User-agent: *
+Crawl-delay: 1
+
+# Block access to service worker and manifest
+Disallow: /sw.js
+Disallow: /manifest.json

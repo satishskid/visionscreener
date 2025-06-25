@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Skids Vision - Pediatric Eye Health Screening</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Skids Vision - Comprehensive pediatric vision screening application using photoscreening technology and visual acuity tests for children's eye health.">
+    <meta name="keywords" content="skids vision, vision screening, pediatric eye health, photoscreening, visual acuity, children's vision, eye health, greybrain.ai">
+    <meta name="author" content="greybrain.ai">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Skids Vision - Pediatric Eye Health Screening">
+    <meta property="og:description" content="Professional-grade vision screening tool for children. Screen for vision problems using advanced photoscreening technology.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skids-vision.netlify.app">
+    <meta property="og:image" content="https://skids-vision.netlify.app/og-image.png">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Skids Vision - Pediatric Eye Health Screening">
+    <meta name="twitter:description" content="Professional-grade vision screening tool for children. Screen for vision problems using advanced photoscreening technology.">
+    <meta name="twitter:image" content="https://skids-vision.netlify.app/og-image.png">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#21808D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Skids Vision">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁️</text></svg>">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁️</text></svg>">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="app.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Progress Bar -->
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Step 1 of 7</div>
+        </div>
+
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcomeScreen">
+            <div class="welcome-content">
+                <div class="logo">
+                    <div class="logo-icon">👁️</div>
+                    <h1>Skids Vision</h1>
+                </div>
+                <div class="welcome-text">
+                    <h2>Pediatric Eye Health Screening</h2>
+                    <p>This app helps screen children's vision using advanced photoscreening technology and visual acuity tests.</p>
+                    <div class="privacy-notice">
+                        <p><strong>Privacy Notice:</strong> Your data is processed locally and securely. No personal information is stored permanently without your consent.</p>
+                    </div>
+                </div>
+                <div class="role-selection">
+                    <h3>Select Your Role:</h3>
+                    <div class="role-buttons">
+                        <button class="btn btn--lg role-btn" data-role="parent">
+                            <span class="role-icon">👨‍👩‍👧‍👦</span>
+                            Parent
+                        </button>
+                        <button class="btn btn--lg role-btn" data-role="teacher">
+                            <span class="role-icon">👩‍🏫</span>
+                            Teacher
+                        </button>
+                        <button class="btn btn--lg role-btn" data-role="clinician">
+                            <span class="role-icon">👩‍⚕️</span>
+                            Clinician
+                        </button>
+                    </div>
+                </div>
+                <div class="consent-section">
+                    <label class="consent-checkbox">
+                        <input type="checkbox" id="consentCheckbox">
+                        <span class="checkmark"></span>
+                        I consent to use this screening tool and understand it does not replace professional medical advice
+                    </label>
+                </div>
+                <button class="btn btn--primary btn--lg btn--full-width" id="startBtn" disabled>
+                    Start Screening
+                </button>
+            </div>
+        </div>
+
+        <!-- Patient Data Entry Screen -->
+        <div class="screen" id="patientDataScreen">
+            <div class="screen-header">
+                <h2>Patient Information</h2>
+                <p>Enter the child's basic information for the screening</p>
+            </div>
+            <form class="patient-form" id="patientForm">
+                <div class="form-group">
+                    <label class="form-label" for="childName">Child's Name</label>
+                    <input type="text" class="form-control" id="childName" placeholder="Enter child's name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="childAge">Age (years)</label>
+                    <input type="number" class="form-control" id="childAge" min="1" max="18" placeholder="Enter age">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="childGender">Gender</label>
+                    <select class="form-control" id="childGender">
+                        <option value="">Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="patientId">Patient ID (Optional)</label>
+                    <input type="text" class="form-control" id="patientId" placeholder="Optional identifier">
+                </div>
+                <div class="anonymize-option">
+                    <label class="consent-checkbox">
+                        <input type="checkbox" id="anonymizeData">
+                        <span class="checkmark"></span>
+                        Use anonymous screening (no personal data stored)
+                    </label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn--outline" id="skipDataBtn">Skip</button>
+                    <button type="submit" class="btn btn--primary">Continue</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Camera Setup Screen -->
+        <div class="screen" id="cameraSetupScreen">
+            <div class="screen-header">
+                <h2>Camera Setup</h2>
+                <p>Follow these steps to capture quality photos</p>
+            </div>
+            <div class="setup-instructions">
+                <div class="instruction-card">
+                    <div class="instruction-icon">📱</div>
+                    <h3>1. Position Device</h3>
+                    <p>Hold device 3 feet (1 meter) from child's face</p>
+                </div>
+                <div class="instruction-card">
+                    <div class="instruction-icon">💡</div>
+                    <h3>2. Check Lighting</h3>
+                    <p>Ensure good lighting. Flash will be used automatically</p>
+                </div>
+                <div class="instruction-card">
+                    <div class="instruction-icon">👶</div>
+                    <h3>3. Child Position</h3>
+                    <p>Child should look directly at the camera</p>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn--primary btn--lg btn--full-width" id="startCameraBtn">
+                    Start Camera
+                </button>
+            </div>
+        </div>
+
+        <!-- Photo Capture Screen -->
+        <div class="screen" id="photoCaptureScreen">
+            <div class="screen-header">
+                <h2>Photo Capture</h2>
+                <p id="captureStatus">Position child and tap when ready</p>
+            </div>
+            <div class="camera-container">
+                <div class="camera-preview" id="cameraPreview">
+                    <div class="camera-overlay">
+                        <div class="face-guide"></div>
+                        <div class="fixation-target" id="fixationTarget">🎈</div>
+                    </div>
+                    <div class="camera-placeholder">
+                        <div class="camera-icon">📷</div>
+                        <p>Camera Preview</p>
+                    </div>
+                </div>
+                <div class="camera-feedback" id="cameraFeedback">
+                    <div class="feedback-item">
+                        <span class="feedback-icon" id="lookingIcon">👁️</span>
+                        <span id="lookingStatus">Looking at camera</span>
+                    </div>
+                    <div class="feedback-item">
+                        <span class="feedback-icon" id="qualityIcon">✅</span>
+                        <span id="qualityStatus">Image quality good</span>
+                    </div>
+                </div>
+            </div>
+            <div class="camera-controls">
+                <button class="btn btn--outline" id="retakeBtn" style="display: none;">Retake</button>
+                <button class="btn btn--primary btn--lg capture-btn" id="captureBtn">
+                    <span class="capture-icon">📸</span>
+                    Capture Photo
+                </button>
+            </div>
+            <div class="capture-counter">
+                <span id="captureCount">Photos taken: 0/2</span>
+            </div>
+        </div>
+
+        <!-- AI Analysis Screen -->
+        <div class="screen" id="analysisScreen">
+            <div class="screen-header">
+                <h2>Analyzing Images</h2>
+                <p>Processing captured photos with AI technology</p>
+            </div>
+            <div class="analysis-container">
+                <div class="loading-animation">
+                    <div class="spinner"></div>
+                    <div class="analysis-steps">
+                        <div class="analysis-step active" id="step1">Detecting pupils...</div>
+                        <div class="analysis-step" id="step2">Measuring reflexes...</div>
+                        <div class="analysis-step" id="step3">Calculating metrics...</div>
+                        <div class="analysis-step" id="step4">Generating results...</div>
+                    </div>
+                </div>
+                <div class="analysis-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="analysisProgress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visual Acuity Test Screen -->
+        <div class="screen" id="acuityTestScreen">
+            <div class="screen-header">
+                <h2>Visual Acuity Test</h2>
+                <p id="acuityInstructions">Help your child identify the direction of the E</p>
+            </div>
+            <div class="acuity-test-container">
+                <div class="acuity-level-indicator">
+                    <span id="currentLevel">Level: 20/200</span>
+                    <span id="testProgress">0/3 correct</span>
+                </div>
+                <div class="optotype-display">
+                    <div class="optotype" id="optotype">E</div>
+                </div>
+                <div class="direction-controls">
+                    <p>Which direction is the E pointing?</p>
+                    <div class="direction-buttons">
+                        <button class="btn btn--lg direction-btn" data-direction="up">
+                            <span class="arrow">⬆️</span>
+                            Up
+                        </button>
+                        <button class="btn btn--lg direction-btn" data-direction="down">
+                            <span class="arrow">⬇️</span>
+                            Down
+                        </button>
+                        <button class="btn btn--lg direction-btn" data-direction="left">
+                            <span class="arrow">⬅️</span>
+                            Left
+                        </button>
+                        <button class="btn btn--lg direction-btn" data-direction="right">
+                            <span class="arrow">➡️</span>
+                            Right
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="screen" id="resultsScreen">
+            <div class="screen-header">
+                <h2>Screening Results</h2>
+                <p>Complete screening summary and recommendations</p>
+            </div>
+            <div class="results-container">
+                <div class="result-summary">
+                    <div class="result-status" id="overallResult">
+                        <div class="status-icon" id="resultIcon">✅</div>
+                        <div class="status-text">
+                            <h3 id="resultTitle">Screening Complete</h3>
+                            <p id="resultDescription">Results ready for review</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-details">
+                    <div class="result-section">
+                        <h4>Photoscreening Results</h4>
+                        <div class="metric-grid" id="photoscreenResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h4>Visual Acuity Results</h4>
+                        <div class="acuity-results" id="acuityResults">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="result-section">
+                        <h4>Recommendations</h4>
+                        <div class="recommendations" id="recommendations">
+                            <!-- Recommendations will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-actions">
+                    <button class="btn btn--outline" id="printBtn">Print Results</button>
+                    <button class="btn btn--outline" id="shareBtn">Share Results</button>
+                    <button class="btn btn--primary" id="newScreeningBtn">New Screening</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation" id="navigation" style="display: none;">
+            <button class="nav-btn" id="backBtn">← Back</button>
+            <button class="nav-btn" id="homeBtn">🏠 Home</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p class="footer-branding">made by <span class="brand-highlight">greybrain.ai</span></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "Skids Vision",
+  "short_name": "Skids Vision",
+  "description": "Pediatric vision screening application using photoscreening technology",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#21808D",
+  "background_color": "#FCFCF9",
+  "categories": ["medical", "health", "education"],
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><circle cx='96' cy='96' r='88' fill='%2321808D'/><text x='96' y='120' font-size='80' text-anchor='middle' fill='white'>👁️</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><circle cx='256' cy='256' r='240' fill='%2321808D'/><text x='256' y='320' font-size='200' text-anchor='middle' fill='white'>👁️</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 568'><rect width='320' height='568' fill='%23FCFCF9'/><text x='160' y='100' text-anchor='middle' font-size='24' fill='%23134252'>Skids Vision</text><text x='160' y='300' text-anchor='middle' font-size='16' fill='%23626C71'>Professional pediatric eye health screening</text></svg>",
+      "sizes": "320x568",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
